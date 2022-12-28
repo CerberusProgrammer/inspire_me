@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quotes/quotes.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,7 +10,7 @@ class Home extends StatefulWidget {
 class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    String quoteContent = 'uwu';
+    String quoteContent = '';
 
     return Scaffold(
       appBar: AppBar(
