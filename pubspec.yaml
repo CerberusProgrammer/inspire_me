@@ -13,6 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   appinio_swiper: ^1.1.1
+  blurrycontainer: ^1.0.2
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
