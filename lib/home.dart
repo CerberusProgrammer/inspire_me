@@ -37,6 +37,67 @@ class _Home extends State<Home> {
             child: FloatingActionButton(
               onPressed: (() {
                 setState(() {
+                  Favorites.favoriteQuotesCards.add(Center(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            color: Color.fromARGB(
+                                30, randoms[0], randoms[1], randoms[2])),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Card(
+                                  elevation: 15,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color.fromARGB(randoms[3], randoms[0],
+                                              randoms[1], randoms[2]),
+                                          Color.fromARGB(randoms[7], randoms[4],
+                                              randoms[5], randoms[6]),
+                                        ],
+                                      ),
+                                    ),
+                                    child: ListTile(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      onTap: () {},
+                                      title: Text(
+                                        allquotes[randomQuote]['content'],
+                                        style: TextStyle(
+                                          fontFamily: styleList[randoms[8]],
+                                          letterSpacing: 1,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: randomFontSize,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      subtitle: Text(
+                                        '- ${allquotes[randomQuote]['author']}',
+                                        style: TextStyle(
+                                          letterSpacing: 1,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: randomFontSize - 10,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )),
+                  ));
                   var rng = Random();
                   randomQuote = rng.nextInt(500);
                   randomFontSize = 20 + rng.nextDouble() * 20;
