@@ -14,8 +14,11 @@ class _Favorites extends State<Favorites> {
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(8),
-        child: Column(
-          children: Favorites.favoriteQuotesCards,
+        child: ListView.builder(
+          itemCount: Favorites.favoriteQuotesCards.length,
+          itemBuilder: (c, i) {
+            return Favorites.favoriteQuotesCards[i];
+          },
         ),
       )),
     );

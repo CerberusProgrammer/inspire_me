@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:inspire_me/favorites.dart';
+import 'package:inspire_me/history.dart';
+import 'package:inspire_me/profile.dart';
 
 import 'data/fonts.dart';
 import 'data/quotes.dart';
@@ -25,10 +27,7 @@ class _Home extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabs = [
-      home(),
-      Favorites(),
-    ];
+    List<Widget> tabs = [home(), Favorites(), History(), Profile()];
 
     return Scaffold(
         body: tabs[index],
@@ -37,67 +36,8 @@ class _Home extends State<Home> {
             child: FloatingActionButton(
               onPressed: (() {
                 setState(() {
-                  Favorites.favoriteQuotesCards.add(Center(
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            color: Color.fromARGB(
-                                30, randoms[0], randoms[1], randoms[2])),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Card(
-                                  elevation: 15,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color.fromARGB(randoms[3], randoms[0],
-                                              randoms[1], randoms[2]),
-                                          Color.fromARGB(randoms[7], randoms[4],
-                                              randoms[5], randoms[6]),
-                                        ],
-                                      ),
-                                    ),
-                                    child: ListTile(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      onTap: () {},
-                                      title: Text(
-                                        allquotes[randomQuote]['content'],
-                                        style: TextStyle(
-                                          fontFamily: styleList[randoms[8]],
-                                          letterSpacing: 1,
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: randomFontSize,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      subtitle: Text(
-                                        '- ${allquotes[randomQuote]['author']}',
-                                        style: TextStyle(
-                                          letterSpacing: 1,
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: randomFontSize - 10,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )),
-                  ));
+                  fav = false;
+
                   var rng = Random();
                   randomQuote = rng.nextInt(500);
                   randomFontSize = 20 + rng.nextDouble() * 20;
@@ -140,8 +80,8 @@ class _Home extends State<Home> {
                 text: 'Favorites',
               ),
               GButton(
-                icon: Icons.tag,
-                text: 'Tags',
+                icon: Icons.history,
+                text: 'History',
               ),
               GButton(
                 icon: Icons.person,
@@ -201,8 +141,82 @@ class _Home extends State<Home> {
                       onTap: () {
                         setState(() {
                           if (fav) {
+                            Favorites.favoriteQuotesCards.removeLast();
                             fav = false;
                           } else {
+                            Favorites.favoriteQuotesCards.add(Center(
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color: Color.fromARGB(30, randoms[0],
+                                          randoms[1], randoms[2])),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Card(
+                                            elevation: 15,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(10),
+                                                ),
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color.fromARGB(
+                                                        randoms[3],
+                                                        randoms[0],
+                                                        randoms[1],
+                                                        randoms[2]),
+                                                    Color.fromARGB(
+                                                        randoms[7],
+                                                        randoms[4],
+                                                        randoms[5],
+                                                        randoms[6]),
+                                                  ],
+                                                ),
+                                              ),
+                                              child: ListTile(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                onTap: () {},
+                                                title: Text(
+                                                  allquotes[randomQuote]
+                                                      ['content'],
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        styleList[randoms[8]],
+                                                    letterSpacing: 1,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontSize: randomFontSize,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                subtitle: Text(
+                                                  '- ${allquotes[randomQuote]['author']}',
+                                                  style: TextStyle(
+                                                    letterSpacing: 1,
+                                                    fontStyle: FontStyle.italic,
+                                                    fontSize:
+                                                        randomFontSize - 10,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )),
+                            ));
                             fav = true;
                           }
                         });
