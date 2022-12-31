@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:inspire_me/favorites.dart';
 import 'package:inspire_me/history.dart';
-import 'package:inspire_me/profile.dart';
 
 import 'data/fonts.dart';
 import 'data/quotes.dart';
@@ -27,12 +26,7 @@ class _Home extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabs = [
-      home(true),
-      const Favorites(),
-      History(),
-      const Profile()
-    ];
+    List<Widget> tabs = [home(true), const Favorites(), const History()];
 
     return Scaffold(
         body: tabs[index],
@@ -90,10 +84,6 @@ class _Home extends State<Home> {
                 icon: Icons.history,
                 text: 'History',
               ),
-              GButton(
-                icon: Icons.person,
-                text: 'Profile',
-              )
             ],
             selectedIndex: index,
             onTabChange: (i) {
@@ -162,170 +152,169 @@ class _Home extends State<Home> {
                                   List<int> rnds = randoms;
                                   int r = randomQuote;
                                   double rf = randomFontSize;
-                                  Widget w = Center(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                            color: Color.fromARGB(
-                                                30, rnds[0], rnds[1], rnds[2])),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Card(
-                                                  elevation: 15,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .all(
-                                                        Radius.circular(10),
-                                                      ),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromARGB(
-                                                              rnds[3],
-                                                              rnds[0],
-                                                              rnds[1],
-                                                              rnds[2]),
-                                                          Color.fromARGB(
-                                                              rnds[7],
-                                                              rnds[4],
-                                                              rnds[5],
-                                                              rnds[6]),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: ListTile(
-                                                      shape:
-                                                          RoundedRectangleBorder(
+                                  Widget w = Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Center(
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
+                                              color: Color.fromARGB(30, rnds[0],
+                                                  rnds[1], rnds[2])),
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Card(
+                                                    elevation: 15,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
+                                                            const BorderRadius
+                                                                .all(
+                                                          Radius.circular(10),
+                                                        ),
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: [
+                                                            Color.fromARGB(
+                                                                rnds[3],
+                                                                rnds[0],
+                                                                rnds[1],
+                                                                rnds[2]),
+                                                            Color.fromARGB(
+                                                                rnds[7],
+                                                                rnds[4],
+                                                                rnds[5],
+                                                                rnds[6]),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      onTap: () {
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (builder) {
-                                                          return Scaffold(
-                                                            body: Center(
-                                                              child: Container(
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius: const BorderRadius
-                                                                              .all(
-                                                                          Radius.circular(
-                                                                              10)),
-                                                                      color: Color.fromARGB(
-                                                                          30,
-                                                                          rnds[
-                                                                              0],
-                                                                          rnds[
-                                                                              1],
-                                                                          rnds[
-                                                                              2])),
-                                                                  child: Center(
-                                                                    child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              10),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          Card(
-                                                                            elevation:
-                                                                                15,
+                                                      child: ListTile(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (builder) {
+                                                            return Scaffold(
+                                                              body: Center(
+                                                                child:
+                                                                    Container(
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: const BorderRadius.all(Radius.circular(
+                                                                                10)),
+                                                                            color: Color.fromARGB(
+                                                                                30,
+                                                                                rnds[0],
+                                                                                rnds[1],
+                                                                                rnds[2])),
+                                                                        child: Center(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(10),
                                                                             child:
-                                                                                Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: const BorderRadius.all(
-                                                                                  Radius.circular(10),
-                                                                                ),
-                                                                                gradient: LinearGradient(
-                                                                                  colors: [
-                                                                                    Color.fromARGB(rnds[3], rnds[0], rnds[1], rnds[2]),
-                                                                                    Color.fromARGB(rnds[7], rnds[4], rnds[5], rnds[6]),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                              child: ListTile(
-                                                                                shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(10),
-                                                                                ),
-                                                                                onTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                                title: Text(
-                                                                                  allquotes[r]['content'],
-                                                                                  style: TextStyle(
-                                                                                    fontFamily: styleList[rnds[8]],
-                                                                                    letterSpacing: 1,
-                                                                                    fontStyle: FontStyle.normal,
-                                                                                    fontSize: rf,
+                                                                                Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              children: [
+                                                                                Card(
+                                                                                  elevation: 15,
+                                                                                  child: Container(
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: const BorderRadius.all(
+                                                                                        Radius.circular(10),
+                                                                                      ),
+                                                                                      gradient: LinearGradient(
+                                                                                        colors: [
+                                                                                          Color.fromARGB(rnds[3], rnds[0], rnds[1], rnds[2]),
+                                                                                          Color.fromARGB(rnds[7], rnds[4], rnds[5], rnds[6]),
+                                                                                        ],
+                                                                                      ),
+                                                                                    ),
+                                                                                    child: ListTile(
+                                                                                      shape: RoundedRectangleBorder(
+                                                                                        borderRadius: BorderRadius.circular(10),
+                                                                                      ),
+                                                                                      onTap: () {
+                                                                                        Navigator.pop(context);
+                                                                                      },
+                                                                                      title: Text(
+                                                                                        allquotes[r]['content'],
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: styleList[rnds[8]],
+                                                                                          letterSpacing: 1,
+                                                                                          fontStyle: FontStyle.normal,
+                                                                                          fontSize: rf,
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      subtitle: Text(
+                                                                                        '- ${allquotes[r]['author']}',
+                                                                                        style: TextStyle(
+                                                                                          letterSpacing: 1,
+                                                                                          fontStyle: FontStyle.italic,
+                                                                                          fontSize: randomFontSize - 10,
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                    ),
                                                                                   ),
-                                                                                  textAlign: TextAlign.center,
                                                                                 ),
-                                                                                subtitle: Text(
-                                                                                  '- ${allquotes[r]['author']}',
-                                                                                  style: TextStyle(
-                                                                                    letterSpacing: 1,
-                                                                                    fontStyle: FontStyle.italic,
-                                                                                    fontSize: randomFontSize - 10,
-                                                                                  ),
-                                                                                  textAlign: TextAlign.center,
-                                                                                ),
-                                                                              ),
+                                                                              ],
                                                                             ),
                                                                           ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  )),
-                                                            ),
-                                                          );
-                                                        }));
-                                                      },
-                                                      title: Text(
-                                                        allquotes[r]['content'],
-                                                        style: TextStyle(
-                                                          fontFamily: styleList[
-                                                              rnds[8]],
-                                                          letterSpacing: 1,
-                                                          fontStyle:
-                                                              FontStyle.normal,
-                                                          fontSize: rf,
+                                                                        )),
+                                                              ),
+                                                            );
+                                                          }));
+                                                        },
+                                                        title: Text(
+                                                          allquotes[r]
+                                                              ['content'],
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                styleList[
+                                                                    rnds[8]],
+                                                            letterSpacing: 1,
+                                                            fontStyle: FontStyle
+                                                                .normal,
+                                                            fontSize: rf,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                      subtitle: Text(
-                                                        '- ${allquotes[r]['author']}',
-                                                        style: TextStyle(
-                                                          letterSpacing: 1,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                          fontSize:
-                                                              randomFontSize -
-                                                                  10,
+                                                        subtitle: Text(
+                                                          '- ${allquotes[r]['author']}',
+                                                          style: TextStyle(
+                                                            letterSpacing: 1,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontSize:
+                                                                randomFontSize -
+                                                                    10,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.center,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        )),
+                                          )),
+                                    ),
                                   );
                                   Favorites.favoriteQuotesCards.add(w);
                                   fav = true;
