@@ -30,11 +30,12 @@ class _Home extends State<Home> {
     List<Widget> tabs = [
       home(true),
       const Favorites(),
-      History(),
+      const History(),
       const Profile()
     ];
 
     return Scaffold(
+        appBar: AppBar(title: const Text('Inspire Me')),
         body: tabs[index],
         floatingActionButton: Visibility(
             visible: visible && !anotherTab,
