@@ -30,7 +30,6 @@ class _Home extends State<Home> {
       home(true),
       const Favorites(),
       History(),
-      const Profile()
     ];
 
     return Scaffold(
