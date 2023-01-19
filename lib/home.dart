@@ -35,7 +35,12 @@ class _Home extends State<Home> {
     ];
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Inspire Me')),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: AppBar(
+              elevation: 0,
+              title: const Text('Inspire Me'),
+            )),
         body: tabs[index],
         floatingActionButton: Visibility(
             visible: visible && !anotherTab,
