@@ -22,4 +22,7 @@ List<String?> styleList = [
   GoogleFonts.tradeWinds().fontFamily,
   GoogleFonts.rocknRollOne().fontFamily,
   GoogleFonts.romanesco().fontFamily,
+  GoogleFonts.notoSansThaiLooped().fontFamily,
+  GoogleFonts.kranky().fontFamily,
+  GoogleFonts.sacramento().fontFamily,
 ];

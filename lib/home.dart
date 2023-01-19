@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:inspire_me/favorites.dart';
 import 'package:inspire_me/history.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'data/fonts.dart';
 import 'data/quotes.dart';
@@ -29,7 +31,7 @@ class _Home extends State<Home> {
     List<Widget> tabs = [
       home(true),
       const Favorites(),
-      History(),
+      const History(),
     ];
 
     return Scaffold(
@@ -60,6 +62,8 @@ class _Home extends State<Home> {
                     rng.nextInt(styleList.length),
                   ];
                 });
+                writeCounter(19);
+                print(readCounter());
               }),
               child: const Icon(Icons.refresh),
             )),
@@ -103,6 +107,35 @@ class _Home extends State<Home> {
             },
           ),
         ));
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    print('path: ' + directory.path);
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/counter.txt');
+  }
+
+  Future<int> readCounter() async {
+    try {
+      final file = await _localFile;
+      final contents = await file.readAsString();
+      print(contents);
+      return int.parse(contents);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  Future<File> writeCounter(int counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString('$counter');
   }
 
   Widget home(bool functional) {
