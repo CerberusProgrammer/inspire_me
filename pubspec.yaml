@@ -12,8 +12,12 @@ dependencies:
     
   google_fonts: ^3.0.1
   google_nav_bar: ^5.0.6
+<<<<<<< HEAD
   introduction_screen: ^3.1.4
   showcaseview: ^2.0.0+1
+=======
+  path_provider: ^2.0.11
+>>>>>>> 5dc29ed3148a5c39def640b6fda6ca6c878c4555
 
 dev_dependencies:
   flutter_test:
