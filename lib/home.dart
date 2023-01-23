@@ -7,6 +7,8 @@ import 'package:inspire_me/history.dart';
 import 'data/fonts.dart';
 import 'data/quotes.dart';
 
+import 'package:showcaseview/showcaseview.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
+import 'package:inspire_me/presentation.dart';
 
 void main() {
   runApp(
@@ -8,11 +7,11 @@ void main() {
       debugShowCheckedModeBanner: false,
       title: 'Inspire Me',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primarySwatch: Colors.amber,
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const Presentation(),
     ),
   );
 }
