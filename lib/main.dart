@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:inspire_me/presentation.dart';
 import 'package:inspire_me/themes.dart';
 
+import 'dashboard.dart';
+
 void main() {
   runApp(
     const Main(
@@ -39,7 +41,7 @@ class _Main extends State<Main> {
         title: 'What To Do?',
         theme: theme,
         darkTheme: darkTheme,
-        home: const Presentation(),
+        home: const Dashboard(),
       ),
     );
   }
