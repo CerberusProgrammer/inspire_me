@@ -1,4 +1,4 @@
-const List allquotes = [
+const List<Map<String, dynamic>> allquotes = [
   {
     "_id": "gcPBYtDU718",
     "content":

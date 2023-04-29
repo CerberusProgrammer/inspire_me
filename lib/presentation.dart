@@ -1,3 +1,5 @@
+import 'package:inspire_me/dashboard.dart';
+import 'package:inspire_me/home.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +11,6 @@ class Presentation extends StatefulWidget {
 }
 
 class _Presentation extends State<StatefulWidget> {
-  final _introKey = GlobalKey<IntroductionScreenState>();
-  String _status = 'Waiting...';
-
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
@@ -19,12 +18,12 @@ class _Presentation extends State<StatefulWidget> {
         PageViewModel(
             title: 'Inspire Me',
             body: 'Do you feel like nothing inspirate you to work?',
-            decoration: const PageDecoration(
+            decoration: PageDecoration(
               titleTextStyle: TextStyle(
                 fontSize: 54,
                 fontWeight: FontWeight.bold,
-                color: Colors.amber,
-                shadows: <Shadow>[
+                color: Theme.of(context).colorScheme.primary,
+                shadows: const [
                   Shadow(
                     offset: Offset(2, 2.5),
                     blurRadius: 0,
@@ -56,10 +55,17 @@ class _Presentation extends State<StatefulWidget> {
           ),
         ),
       ],
-      onDone: (() {}),
-      showDoneButton: false,
-      showNextButton: false,
-      showSkipButton: false,
+      onDone: (() {
+        Navigator.push(context, MaterialPageRoute(builder: (builder) {
+          return const Dashboard();
+        }));
+      }),
+      done: const Icon(Icons.done),
+      next: const Icon(Icons.arrow_forward),
+      skip: const Text('Skip'),
+      showDoneButton: true,
+      showNextButton: true,
+      showSkipButton: true,
     );
   }
 }

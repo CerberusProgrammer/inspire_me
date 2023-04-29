@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inspire_me/data/data.dart';
 
 class History extends StatefulWidget {
-  static List<Widget> historyQuotes = [];
-
   const History({super.key});
 
   @override
@@ -15,9 +13,9 @@ class _History extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: History.historyQuotes.length,
+        itemCount: Data.historyQuotes.length,
         itemBuilder: (c, i) {
-          return History.historyQuotes[i];
+          return Data.historyQuotes[i];
         },
       ),
     );

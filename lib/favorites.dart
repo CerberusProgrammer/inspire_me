@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'data/data.dart';
 import 'data/fonts.dart';
 
-class Favorites extends StatefulWidget {
+class Favorites extends StatelessWidget {
   const Favorites({super.key});
-  static List<Widget> favoriteQuotesCards = [];
-  @override
-  State<StatefulWidget> createState() => _Favorites();
-}
 
-class _Favorites extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(5),
-          child: Favorites.favoriteQuotesCards.isNotEmpty
+          child: Data.favoriteQuotesCards.isNotEmpty
               ? ListView.builder(
-                  itemCount: Favorites.favoriteQuotesCards.length,
+                  itemCount: Data.favoriteQuotesCards.length,
                   itemBuilder: (c, i) {
-                    return Favorites.favoriteQuotesCards[i];
+                    return Data.favoriteQuotesCards[i];
                   },
                 )
               : Center(
@@ -30,14 +26,20 @@ class _Favorites extends State<Favorites> {
                       child: Card(
                         elevation: 15,
                         child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(10),
                             ),
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromARGB(12, 12, 12, 12),
-                                Color.fromARGB(100, 121, 123, 12),
+                                Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withAlpha(120),
+                                Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withAlpha(10),
                               ],
                             ),
                           ),
