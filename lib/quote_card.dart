@@ -3,6 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 
+import 'data/data.dart';
 import 'data/fonts.dart';
 import 'data/quotes.dart';
 
@@ -94,7 +95,14 @@ class _QuoteCard extends State<QuoteCard> {
                       10,
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Data.favoriteQuotes.add({
+                      'index': widget.index,
+                      'color': widget.color,
+                      'fontStyle': widget.fontIndexRandom,
+                      'fontSize': widget.fontSizeRandom,
+                    });
+                  },
                   title: Text(
                     allquotes[widget.index]['content'],
                     style: TextStyle(

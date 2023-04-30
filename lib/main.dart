@@ -1,8 +1,23 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:inspire_me/themes.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'dashboard.dart';
+
+void createTable(Database db) async {
+  await db.execute('''
+    CREATE TABLE quotes (
+      _id TEXT PRIMARY KEY,
+      content TEXT,
+      author TEXT,
+      authorId TEXT,
+      tags TEXT,
+      length INTEGER,
+      favorite INTEGER
+    );
+  ''');
+}
 
 void main() {
   runApp(

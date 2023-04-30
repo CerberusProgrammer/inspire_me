@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inspire_me/quote_card.dart';
 
 import 'data/data.dart';
 import 'data/fonts.dart';
@@ -12,11 +13,17 @@ class Favorites extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(5),
-          child: Data.favoriteQuotesCards.isNotEmpty
+          child: Data.favoriteQuotes.isNotEmpty
               ? ListView.builder(
-                  itemCount: Data.favoriteQuotesCards.length,
+                  itemCount: Data.favoriteQuotes.length,
                   itemBuilder: (c, i) {
-                    return Data.favoriteQuotesCards[i];
+                    return QuoteCard(
+                      index: Data.favoriteQuotes[i]['index'],
+                      fontIndexRandom: Data.favoriteQuotes[i]['fontStyle'],
+                      fontSizeRandom: Data.favoriteQuotes[i]['fontSize'],
+                      color: Data.favoriteQuotes[i]['color'],
+                      isHistory: true,
+                    );
                   },
                 )
               : Center(

@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
             fontStyle = Random().nextInt(styleList.length);
             fontSize = Random().nextInt(20) + 10;
 
-            Data.favoriteQuotes.add({
+            Data.historyQuotes.add({
               'index': index,
               'color': color,
               'fontStyle': fontStyle,

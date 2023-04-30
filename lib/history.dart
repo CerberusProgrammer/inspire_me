@@ -14,13 +14,13 @@ class _History extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: Data.favoriteQuotes.length,
+        itemCount: Data.historyQuotes.length,
         itemBuilder: (c, i) {
           return QuoteCard(
-            index: Data.favoriteQuotes[i]['index'],
-            fontIndexRandom: Data.favoriteQuotes[i]['fontStyle'],
-            fontSizeRandom: Data.favoriteQuotes[i]['fontSize'],
-            color: Data.favoriteQuotes[i]['color'],
+            index: Data.historyQuotes[i]['index'],
+            fontIndexRandom: Data.historyQuotes[i]['fontStyle'],
+            fontSizeRandom: Data.historyQuotes[i]['fontSize'],
+            color: Data.historyQuotes[i]['color'],
             isHistory: true,
           );
         },
