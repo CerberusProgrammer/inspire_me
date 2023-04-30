@@ -11,6 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   final prefs = await SharedPreferences.getInstance();
+  Data.username = prefs.getString('username') ?? 'username';
   Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 0;
 
   runApp(
@@ -52,17 +53,10 @@ void main() async {
     },
     version: 1,
   ).then((database) async {
-    final List<Map<String, dynamic>> favorites = await database.query(
-      'favorites',
-      where: 'favorite = ?',
-      whereArgs: [1],
-    );
-    final List<Map<String, dynamic>> history = await database.query(
-      'history',
-      where: 'history = ?',
-      whereArgs: [1],
-    );
-
+    final List<Map<String, dynamic>> favorites =
+        await database.query('favorites');
+    final List<Map<String, dynamic>> history = await database.query('history');
+    print(favorites);
     Data.favoriteQuotes = favorites;
     Data.historyQuotes = history;
   });

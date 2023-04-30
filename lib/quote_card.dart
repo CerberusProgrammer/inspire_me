@@ -132,7 +132,9 @@ class _QuoteCard extends State<QuoteCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await shareOptions();
+                      },
                       icon: const Icon(Icons.share),
                     ),
                   ],

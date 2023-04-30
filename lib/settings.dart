@@ -1,12 +1,19 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:inspire_me/data/data.dart';
+import 'package:inspire_me/presentation.dart';
 import 'package:inspire_me/themes.dart';
+import 'package:random_avatar/random_avatar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   const Settings({super.key});
 
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -28,26 +35,26 @@ class Settings extends StatelessWidget {
                           elevation: 8,
                           color: Theme.of(context).colorScheme.primary,
                           child: Row(
-                            children: const [
+                            children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: SizedBox(
                                   width: 100,
                                   height: 100,
                                   child: CircleAvatar(
-                                    child: Icon(
-                                      Icons.person,
-                                      size: 40,
+                                    child: RandomAvatar(
+                                      Data.username,
+                                      height: 70,
                                     ),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Username',
-                                    style: TextStyle(
+                                    Data.username,
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 24,
                                       color: Color.fromARGB(120, 0, 0, 0),
@@ -215,7 +222,44 @@ class Settings extends StatelessWidget {
                                 'Username',
                               ),
                               subtitle: const Text('Change your username'),
-                              onTap: () {},
+                              onTap: () async {
+                                showDialog(
+                                    context: context,
+                                    builder: (builder) {
+                                      TextEditingController
+                                          textEditingController =
+                                          TextEditingController();
+
+                                      return AlertDialog(
+                                        title: const Text('Set username'),
+                                        content: TextField(
+                                          controller: textEditingController,
+                                          onSubmitted: (value) {
+                                            setState(() {
+                                              Data.username = value;
+                                            });
+                                          },
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Cancel'),
+                                          ),
+                                          FilledButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                Data.username =
+                                                    textEditingController.text;
+                                              });
+                                            },
+                                            child: const Text('Accept'),
+                                          )
+                                        ],
+                                      );
+                                    });
+                              },
                             ),
                             ListTile(
                               leading: const Icon(Icons.present_to_all),
@@ -227,7 +271,12 @@ class Settings extends StatelessWidget {
                               ),
                               subtitle: const Text(
                                   'View the presentation of the app again.'),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (builder) {
+                                  return const Presentation();
+                                }));
+                              },
                             ),
                           ],
                         ),

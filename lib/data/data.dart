@@ -4,6 +4,8 @@ class Data {
   static List<Map<String, dynamic>> favoriteQuotes = [];
   static List<Map<String, dynamic>> historyQuotes = [];
 
+  static String username = 'username';
+
   static Future<void> insertFavorite(Map<String, dynamic> favorite) async {
     final db = await openDatabase(
       'inspire.db',
