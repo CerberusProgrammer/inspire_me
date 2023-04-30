@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
           gap: 8,
           haptic: true,
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
+            horizontal: 12,
             vertical: 12,
           ),
           duration: const Duration(milliseconds: 400),

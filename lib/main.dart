@@ -1,6 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:inspire_me/presentation.dart';
 import 'package:inspire_me/themes.dart';
 
 import 'dashboard.dart';
@@ -38,7 +37,7 @@ class _Main extends State<Main> {
       initial: widget.savedThemeMode ?? AdaptiveThemeMode.dark,
       builder: (theme, darkTheme) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'What To Do?',
+        title: 'Inspire Me',
         theme: theme,
         darkTheme: darkTheme,
         home: const Dashboard(),
