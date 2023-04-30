@@ -1,6 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 
 List<String?> styleList = [
+  GoogleFonts.ranchers().fontFamily,
   GoogleFonts.roboto().fontFamily,
   GoogleFonts.abel().fontFamily,
   GoogleFonts.chauPhilomeneOne().fontFamily,
@@ -25,4 +26,14 @@ List<String?> styleList = [
   GoogleFonts.notoSansThaiLooped().fontFamily,
   GoogleFonts.kranky().fontFamily,
   GoogleFonts.sacramento().fontFamily,
+  GoogleFonts.lacquer().fontFamily,
+  GoogleFonts.jacquesFrancois().fontFamily,
+  GoogleFonts.damion().fontFamily,
+  GoogleFonts.habibi().fontFamily,
+  GoogleFonts.hahmlet().fontFamily,
+  GoogleFonts.alice().fontFamily,
+  GoogleFonts.sacramento().fontFamily,
+  GoogleFonts.saira().fontFamily,
+  GoogleFonts.jollyLodger().fontFamily,
+  GoogleFonts.revalia().fontFamily,
 ];

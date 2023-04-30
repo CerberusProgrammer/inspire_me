@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class Themes {
   static int defaultIndex = 12;
-  static List<Color> colors = [
+  static const List<Color> colors = [
     Colors.red,
     Colors.pink,
     Colors.purple,
     Colors.deepPurple,
     Colors.indigo,
+    Colors.blue,
     Colors.lightBlue,
     Colors.cyan,
     Colors.teal,
@@ -18,7 +19,7 @@ class Themes {
     Colors.orange,
     Colors.deepOrange,
     Colors.brown,
-    Colors.blueGrey
+    Colors.blueGrey,
   ];
 
   static ThemeData changeTheme(int index) {

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:social_share/social_share.dart';
 
 import 'data/fonts.dart';
 import 'data/quotes.dart';
@@ -24,6 +27,26 @@ class QuoteCard extends StatefulWidget {
 }
 
 class _QuoteCard extends State<QuoteCard> {
+  ScreenshotController screenshotController = ScreenshotController();
+
+  Future<void> shareScreenshotInstagram(BuildContext context) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final imagePath = await screenshotController.captureAndSave(directory.path);
+
+    if (imagePath != null) {
+      SocialShare.shareInstagramStory(
+        appId: 'com.example.inspire_me',
+        imagePath: imagePath,
+      );
+    }
+  }
+
+  Future<void> shareOptions() async {
+    SocialShare.shareOptions(
+      "${allquotes[widget.index]['content']} - ${allquotes[widget.index]['author']} #inspireme",
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,44 +73,47 @@ class _QuoteCard extends State<QuoteCard> {
                     },
                   ),
                 ),
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(8),
-                ),
-                gradient: LinearGradient(
-                  colors: [
-                    widget.color.withAlpha(120),
-                    Theme.of(context).colorScheme.primary.withAlpha(60),
-                  ],
-                ),
-              ),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    10,
+          Screenshot(
+            controller: screenshotController,
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [
+                      widget.color.withAlpha(120),
+                      Theme.of(context).colorScheme.primary.withAlpha(60),
+                    ],
                   ),
                 ),
-                onTap: () {},
-                title: Text(
-                  allquotes[widget.index]['content'],
-                  style: TextStyle(
-                    fontFamily: styleList[widget.fontIndexRandom],
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 24,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                subtitle: Text(
-                  '- ${allquotes[widget.index]['author']}',
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    fontStyle: FontStyle.italic,
-                    fontSize: widget.fontSizeRandom,
+                  onTap: () {},
+                  title: Text(
+                    allquotes[widget.index]['content'],
+                    style: TextStyle(
+                      fontFamily: styleList[widget.fontIndexRandom],
+                      letterSpacing: 1,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 24,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
+                  subtitle: Text(
+                    '- ${allquotes[widget.index]['author']}',
+                    style: TextStyle(
+                      letterSpacing: 1,
+                      fontStyle: FontStyle.italic,
+                      fontSize: widget.fontSizeRandom,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
