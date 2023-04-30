@@ -1,30 +1,71 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:inspire_me/themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'dashboard.dart';
+import 'data/data.dart';
 
-void createTable(Database db) async {
-  await db.execute('''
-    CREATE TABLE quotes (
-      _id TEXT PRIMARY KEY,
-      content TEXT,
-      author TEXT,
-      authorId TEXT,
-      tags TEXT,
-      length INTEGER,
-      favorite INTEGER
-    );
-  ''');
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  final prefs = await SharedPreferences.getInstance();
+  Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 0;
 
-void main() {
   runApp(
-    const Main(
-      savedThemeMode: null,
+    Main(
+      savedThemeMode: savedThemeMode,
     ),
   );
+
+  openDatabase(
+    'inspire.db',
+    onCreate: (db, version) async {
+      await db.execute(
+        '''
+        CREATE TABLE favorites (
+          _id TEXT PRIMARY KEY,
+          content TEXT,
+          author TEXT,
+          authorId TEXT,
+          tags TEXT,
+          length INTEGER,
+          favorite INTEGER
+        );
+        ''',
+      );
+
+      await db.execute(
+        '''
+        CREATE TABLE history (
+          _id TEXT PRIMARY KEY,
+          content TEXT,
+          author TEXT,
+          authorId TEXT,
+          tags TEXT,
+          length INTEGER,
+          favorite INTEGER
+        );
+        ''',
+      );
+    },
+    version: 1,
+  ).then((database) async {
+    final List<Map<String, dynamic>> favorites = await database.query(
+      'favorites',
+      where: 'favorite = ?',
+      whereArgs: [1],
+    );
+    final List<Map<String, dynamic>> history = await database.query(
+      'history',
+      where: 'history = ?',
+      whereArgs: [1],
+    );
+
+    Data.favoriteQuotes = favorites;
+    Data.historyQuotes = history;
+  });
 }
 
 class Main extends StatefulWidget {

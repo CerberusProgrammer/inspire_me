@@ -8,7 +8,6 @@ class Themes {
     Colors.purple,
     Colors.deepPurple,
     Colors.indigo,
-    Colors.blue,
     Colors.lightBlue,
     Colors.cyan,
     Colors.teal,
