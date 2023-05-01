@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
    <application
-        android:label="inspire_me"
+        android:label="Inspire Me"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

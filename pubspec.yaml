@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
     
+  flutter_launcher_icons: ^0.13.1
   font_awesome_flutter: ^10.4.0
   google_fonts: ^3.0.1
   google_nav_bar: ^5.0.6
@@ -32,3 +33,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/inspire_me.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icon/inspire_me.png"
