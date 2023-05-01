@@ -8,12 +8,10 @@ environment:
 
 dependencies:
   adaptive_theme: ^3.2.0
-  animated_text_kit: ^4.2.2
   flutter:
     sdk: flutter
     
   flutter_launcher_icons: ^0.13.1
-  font_awesome_flutter: ^10.4.0
   google_fonts: ^3.0.1
   google_nav_bar: ^5.0.6
   introduction_screen: ^3.1.4
