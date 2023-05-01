@@ -32,7 +32,7 @@ class Data {
     );
   }
 
-  static Future<void> deleteFavorite(String id) async {
+  static Future<void> deleteFavorite(int id) async {
     final db = await openDatabase(
       'inspire.db',
       version: 1,
@@ -40,12 +40,12 @@ class Data {
 
     await db.delete(
       'favorites',
-      where: '_id = ?',
+      where: 'quote = ?',
       whereArgs: [id],
     );
   }
 
-  static Future<void> deleteHistory(String id) async {
+  static Future<void> deleteHistory(int id) async {
     final db = await openDatabase(
       'inspire.db',
       version: 1,
@@ -53,7 +53,7 @@ class Data {
 
     await db.delete(
       'history',
-      where: '_id = ?',
+      where: 'quote = ?',
       whereArgs: [id],
     );
   }

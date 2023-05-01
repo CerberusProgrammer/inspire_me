@@ -242,16 +242,19 @@ class _SettingsState extends State<Settings> {
                                         ),
                                         actions: [
                                           TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
+                                            onPressed: () {},
                                             child: const Text('Cancel'),
                                           ),
                                           FilledButton(
                                             onPressed: () {
                                               setState(() {
-                                                Data.username =
-                                                    textEditingController.text;
+                                                if (textEditingController
+                                                    .text.isNotEmpty) {
+                                                  Data.username =
+                                                      textEditingController
+                                                          .text;
+                                                  Navigator.pop(context);
+                                                }
                                               });
                                             },
                                             child: const Text('Accept'),

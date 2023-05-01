@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:inspire_me/presentation.dart';
 import 'package:inspire_me/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -13,10 +14,12 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   Data.username = prefs.getString('username') ?? 'username';
   Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 0;
+  bool presentation = prefs.getBool('presentation') ?? false;
 
   runApp(
     Main(
       savedThemeMode: savedThemeMode,
+      presentation: presentation,
     ),
   );
 
@@ -26,13 +29,13 @@ void main() async {
       await db.execute(
         '''
         CREATE TABLE favorites (
-          _id TEXT PRIMARY KEY,
-          content TEXT,
-          author TEXT,
-          authorId TEXT,
-          tags TEXT,
-          length INTEGER,
-          favorite INTEGER
+          quote INTEGER,
+          red INTEGER,
+          green INTEGER,
+          blue INTEGER,
+          alpha INTEGER,
+          fontStyle INTEGER,
+          fontSize INTEGER
         );
         ''',
       );
@@ -40,31 +43,36 @@ void main() async {
       await db.execute(
         '''
         CREATE TABLE history (
-          _id TEXT PRIMARY KEY,
-          content TEXT,
-          author TEXT,
-          authorId TEXT,
-          tags TEXT,
-          length INTEGER,
-          favorite INTEGER
+          quote INTEGER,
+          red INTEGER,
+          green INTEGER,
+          blue INTEGER,
+          alpha INTEGER,
+          fontStyle INTEGER,
+          fontSize INTEGER
         );
         ''',
       );
     },
     version: 1,
   ).then((database) async {
-    final List<Map<String, dynamic>> favorites =
-        await database.query('favorites');
-    final List<Map<String, dynamic>> history = await database.query('history');
-    print(favorites);
-    Data.favoriteQuotes = favorites;
-    Data.historyQuotes = history;
+    List<Map<String, dynamic>> favorites = await database.query('favorites');
+    List<Map<String, dynamic>> history = await database.query('history');
+
+    Data.favoriteQuotes.addAll(favorites);
+    Data.historyQuotes.addAll(history);
   });
 }
 
 class Main extends StatefulWidget {
   final AdaptiveThemeMode? savedThemeMode;
-  const Main({super.key, required this.savedThemeMode});
+  final bool presentation;
+
+  const Main({
+    super.key,
+    required this.savedThemeMode,
+    required this.presentation,
+  });
 
   @override
   State<StatefulWidget> createState() => _Main();
@@ -90,7 +98,7 @@ class _Main extends State<Main> {
         title: 'Inspire Me',
         theme: theme,
         darkTheme: darkTheme,
-        home: const Dashboard(),
+        home: widget.presentation ? const Dashboard() : const Presentation(),
       ),
     );
   }

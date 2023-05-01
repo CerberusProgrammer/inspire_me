@@ -19,7 +19,8 @@ class _HomeState extends State<Home> {
   late int index;
   late Color color;
   late int fontStyle;
-  late double fontSize;
+  late int fontSize;
+  bool love = false;
 
   @override
   void initState() {
@@ -27,7 +28,7 @@ class _HomeState extends State<Home> {
 
     index = Random().nextInt(allquotes.length) + 1;
     color = Colors.white;
-    fontStyle = Random().nextInt(styleList.length) + 1;
+    fontStyle = Random().nextInt(styleList.length);
     fontSize = Random().nextInt(30) + 1;
   }
 
@@ -56,12 +57,18 @@ class _HomeState extends State<Home> {
             fontStyle = Random().nextInt(styleList.length);
             fontSize = Random().nextInt(20) + 10;
 
-            Data.historyQuotes.add({
-              'index': index,
-              'color': color,
+            Map<String, dynamic> map = {
+              'quote': index,
+              'red': color.red,
+              'green': color.blue,
+              'blue': color.green,
+              'alpha': color.alpha,
               'fontStyle': fontStyle,
               'fontSize': fontSize,
-            });
+            };
+
+            Data.historyQuotes.add(map);
+            Data.insertHistory(map);
           });
         },
         child: const Icon(Icons.update),

@@ -10,13 +10,13 @@ class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Dashboard> createState() => DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard> {
   late List<Widget> tabs;
 
-  int tab = 0;
+  static int tab = 0;
 
   @override
   void initState() {

@@ -17,11 +17,17 @@ class Favorites extends StatelessWidget {
               ? ListView.builder(
                   itemCount: Data.favoriteQuotes.length,
                   itemBuilder: (c, i) {
+                    int alpha = Data.favoriteQuotes[i]['alpha'];
+                    int red = Data.favoriteQuotes[i]['red'];
+                    int green = Data.favoriteQuotes[i]['green'];
+                    int blue = Data.favoriteQuotes[i]['blue'];
+                    Color color = Color.fromARGB(alpha, red, green, blue);
+
                     return QuoteCard(
-                      index: Data.favoriteQuotes[i]['index'],
+                      index: Data.favoriteQuotes[i]['quote'],
                       fontIndexRandom: Data.favoriteQuotes[i]['fontStyle'],
                       fontSizeRandom: Data.favoriteQuotes[i]['fontSize'],
-                      color: Data.favoriteQuotes[i]['color'],
+                      color: color,
                       isHistory: true,
                     );
                   },

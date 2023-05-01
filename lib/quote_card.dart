@@ -10,7 +10,7 @@ import 'data/quotes.dart';
 class QuoteCard extends StatefulWidget {
   final int index;
   final int fontIndexRandom;
-  final double fontSizeRandom;
+  final int fontSizeRandom;
   final Color color;
   final bool isHistory;
 
@@ -32,11 +32,14 @@ class _QuoteCard extends State<QuoteCard> {
 
   Future<void> shareScreenshotInstagram(BuildContext context) async {
     final directory = await getApplicationDocumentsDirectory();
-    final imagePath = await screenshotController.captureAndSave(directory.path);
+    final imagePath = await screenshotController.captureAndSave(
+      directory.path,
+      pixelRatio: 3.0,
+    );
 
     if (imagePath != null) {
-      SocialShare.shareInstagramStory(
-        appId: 'com.example.inspire_me',
+      SocialShare.shareOptions(
+        "${allquotes[widget.index]['content']} - ${allquotes[widget.index]['author']} #inspireme",
         imagePath: imagePath,
       );
     }
@@ -95,14 +98,35 @@ class _QuoteCard extends State<QuoteCard> {
                       10,
                     ),
                   ),
-                  onTap: () {
-                    Data.favoriteQuotes.add({
-                      'index': widget.index,
-                      'color': widget.color,
-                      'fontStyle': widget.fontIndexRandom,
-                      'fontSize': widget.fontSizeRandom,
-                    });
-                  },
+                  onTap: widget.isHistory
+                      ? () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (builder) {
+                            return Scaffold(
+                              appBar: AppBar(),
+                              body: QuoteCard(
+                                index: widget.index,
+                                fontIndexRandom: widget.fontIndexRandom,
+                                fontSizeRandom: widget.fontSizeRandom,
+                                color: widget.color,
+                              ),
+                            );
+                          }));
+                        }
+                      : () {
+                          Map<String, dynamic> map = {
+                            'quote': widget.index,
+                            'red': widget.color.red,
+                            'green': widget.color.blue,
+                            'blue': widget.color.green,
+                            'alpha': widget.color.alpha,
+                            'fontStyle': widget.fontIndexRandom,
+                            'fontSize': widget.fontSizeRandom,
+                          };
+
+                          Data.favoriteQuotes.add(map);
+                          Data.insertFavorite(map);
+                        },
                   title: Text(
                     allquotes[widget.index]['content'],
                     style: TextStyle(
@@ -118,7 +142,7 @@ class _QuoteCard extends State<QuoteCard> {
                     style: TextStyle(
                       letterSpacing: 1,
                       fontStyle: FontStyle.italic,
-                      fontSize: widget.fontSizeRandom,
+                      fontSize: widget.fontSizeRandom.toDouble(),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -133,7 +157,7 @@ class _QuoteCard extends State<QuoteCard> {
                   children: [
                     IconButton(
                       onPressed: () async {
-                        await shareOptions();
+                        await shareScreenshotInstagram(context);
                       },
                       icon: const Icon(Icons.share),
                     ),
