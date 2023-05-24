@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:inspire_me/presentation.dart';
 import 'package:inspire_me/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,11 +11,14 @@ import 'data/data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   final prefs = await SharedPreferences.getInstance();
+
   Data.username = prefs.getString('username') ?? 'username';
   Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 0;
   bool presentation = prefs.getBool('presentation') ?? false;
+  MobileAds.instance.initialize();
 
   runApp(
     Main(
