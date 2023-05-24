@@ -45,12 +45,6 @@ class _QuoteCard extends State<QuoteCard> {
     }
   }
 
-  Future<void> shareOptions() async {
-    SocialShare.shareOptions(
-      "${allquotes[widget.index]['content']} - ${allquotes[widget.index]['author']} #inspireme",
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,9 +71,9 @@ class _QuoteCard extends State<QuoteCard> {
                     },
                   ),
                 ),
-          Screenshot(
-            controller: screenshotController,
-            child: Card(
+          Card(
+            child: Screenshot(
+              controller: screenshotController,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(

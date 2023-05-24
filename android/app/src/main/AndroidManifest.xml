@@ -2,6 +2,7 @@
     package="com.sazarcode.inspire_me"
     xmlns:tools="http://schemas.android.com/tools"
     >
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
    <application
         android:label="Inspire Me"
         android:name="${applicationName}"
