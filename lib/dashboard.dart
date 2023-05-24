@@ -33,11 +33,6 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          elevation: 0,
-          title: const Text('Inspire Me'),
-        ),
         body: tabs[tab],
         bottomNavigationBar: GNav(
           gap: 8,
