@@ -1,4 +1,4 @@
-package com.example.inspire_me
+package com.sazarcode.inspire_me
 
 import io.flutter.embedding.android.FlutterActivity
 

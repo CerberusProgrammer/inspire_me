@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.inspire_me"
+    package="com.sazarcode.inspire_me"
     xmlns:tools="http://schemas.android.com/tools"
     >
    <application
